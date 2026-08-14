@@ -18,14 +18,14 @@ export function Reveal({ children, className, delay = 0, as: Tag = "div" }: Reve
     if (typeof IntersectionObserver === "undefined") return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    el.dataset.reveal = "pending";
+    el.dataset["reveal"] = "pending";
     el.style.transitionDelay = `${delay}ms`;
 
     const io = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
-            el.dataset.reveal = "shown";
+            el.dataset["reveal"] = "shown";
             io.unobserve(el);
           }
         }

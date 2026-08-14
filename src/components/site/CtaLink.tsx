@@ -15,24 +15,19 @@ const variants: Record<Variant, string> = {
   ghost: "px-0 text-foreground hover:text-solar hover:gap-3",
 };
 
-export function CtaLink({
-  to,
-  children,
-  variant = "solid",
-  className,
-  arrow = true,
-  ...rest
-}: {
-  to: ComponentProps<typeof Link>["to"];
+type CtaLinkProps = ComponentProps<typeof Link> & {
   children: ReactNode;
   variant?: Variant;
-  className?: string;
   arrow?: boolean;
-}) {
+};
+
+export function CtaLink({ children, variant = "solid", className, arrow = true, ...rest }: CtaLinkProps) {
   return (
-    <Link to={to} className={cn(base, variants[variant], className)} {...rest}>
+    <Link {...rest} className={cn(base, variants[variant], className)}>
       <span>{children}</span>
-      {arrow && <ArrowRight className="size-4 shrink-0 transition-transform duration-300" aria-hidden="true" />}
+      {arrow && (
+        <ArrowRight className="size-4 shrink-0 transition-transform duration-300" aria-hidden="true" />
+      )}
     </Link>
   );
 }
