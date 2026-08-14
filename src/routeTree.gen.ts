@@ -10,7 +10,11 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as ForSchoolsRouteImport } from './routes/for-schools'
 import { Route as GreenEnergyCornerRouteImport } from './routes/green-energy-corner'
+import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as StarterKitsRouteImport } from './routes/starter-kits'
 import { Route as TechnologyRouteImport } from './routes/technology'
 
@@ -19,9 +23,29 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForSchoolsRoute = ForSchoolsRouteImport.update({
+  id: '/for-schools',
+  path: '/for-schools',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GreenEnergyCornerRoute = GreenEnergyCornerRouteImport.update({
   id: '/green-energy-corner',
   path: '/green-energy-corner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsRoute = ProjectsRouteImport.update({
+  id: '/projects',
+  path: '/projects',
   getParentRoute: () => rootRouteImport,
 } as any)
 const StarterKitsRoute = StarterKitsRouteImport.update({
@@ -37,35 +61,75 @@ const TechnologyRoute = TechnologyRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/for-schools': typeof ForSchoolsRoute
   '/green-energy-corner': typeof GreenEnergyCornerRoute
+  '/projects': typeof ProjectsRoute
   '/starter-kits': typeof StarterKitsRoute
   '/technology': typeof TechnologyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/for-schools': typeof ForSchoolsRoute
   '/green-energy-corner': typeof GreenEnergyCornerRoute
+  '/projects': typeof ProjectsRoute
   '/starter-kits': typeof StarterKitsRoute
   '/technology': typeof TechnologyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/for-schools': typeof ForSchoolsRoute
   '/green-energy-corner': typeof GreenEnergyCornerRoute
+  '/projects': typeof ProjectsRoute
   '/starter-kits': typeof StarterKitsRoute
   '/technology': typeof TechnologyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/green-energy-corner' | '/starter-kits' | '/technology'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/for-schools'
+    | '/green-energy-corner'
+    | '/projects'
+    | '/starter-kits'
+    | '/technology'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/green-energy-corner' | '/starter-kits' | '/technology'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/for-schools'
+    | '/green-energy-corner'
+    | '/projects'
+    | '/starter-kits'
+    | '/technology'
   id:
-    '__root__' | '/' | '/green-energy-corner' | '/starter-kits' | '/technology'
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/for-schools'
+    | '/green-energy-corner'
+    | '/projects'
+    | '/starter-kits'
+    | '/technology'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
+  ForSchoolsRoute: typeof ForSchoolsRoute
   GreenEnergyCornerRoute: typeof GreenEnergyCornerRoute
+  ProjectsRoute: typeof ProjectsRoute
   StarterKitsRoute: typeof StarterKitsRoute
   TechnologyRoute: typeof TechnologyRoute
 }
@@ -79,11 +143,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/for-schools': {
+      id: '/for-schools'
+      path: '/for-schools'
+      fullPath: '/for-schools'
+      preLoaderRoute: typeof ForSchoolsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/green-energy-corner': {
       id: '/green-energy-corner'
       path: '/green-energy-corner'
       fullPath: '/green-energy-corner'
       preLoaderRoute: typeof GreenEnergyCornerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects': {
+      id: '/projects'
+      path: '/projects'
+      fullPath: '/projects'
+      preLoaderRoute: typeof ProjectsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/starter-kits': {
@@ -105,7 +197,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
+  ForSchoolsRoute: ForSchoolsRoute,
   GreenEnergyCornerRoute: GreenEnergyCornerRoute,
+  ProjectsRoute: ProjectsRoute,
   StarterKitsRoute: StarterKitsRoute,
   TechnologyRoute: TechnologyRoute,
 }
