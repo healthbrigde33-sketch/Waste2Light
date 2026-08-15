@@ -32,8 +32,8 @@ export function EnergyFlowVisual() {
         <path
           d="M60 60 C 200 60, 240 140, 420 140"
           fill="none"
-          stroke="var(--color-brand)"
-          strokeOpacity="0.35"
+          stroke="var(--color-leaf)"
+          strokeOpacity="0.5"
           strokeWidth="1.25"
         />
         <path
@@ -58,8 +58,8 @@ export function EnergyFlowVisual() {
           y1="140"
           x2="780"
           y2="140"
-          stroke="var(--color-brand)"
-          strokeOpacity="0.4"
+          stroke="var(--color-leaf)"
+          strokeOpacity="0.55"
           strokeWidth="1.25"
         />
         <line
@@ -92,7 +92,7 @@ export function EnergyFlowVisual() {
               strokeOpacity="0.35"
               strokeWidth="1"
             />
-            <line x1={n.x} y1={152} x2={n.x} y2={188} stroke="var(--color-brand)" strokeOpacity="0.3" strokeWidth="1" />
+            <line x1={n.x} y1={152} x2={n.x} y2={188} stroke="var(--color-leaf)" strokeOpacity="0.4" strokeWidth="1" />
             <text
               x={n.x}
               y={206}
