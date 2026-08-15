@@ -44,7 +44,7 @@ function TechnologyPage() {
               className="flex flex-col bg-background p-8 lg:p-12"
             >
               <div className="flex items-center justify-between gap-4">
-                <span className="font-mono text-xs tabular-nums text-solar">
+                <span className="font-mono text-xs tabular-nums text-brand">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <StatusTag status={area.status} />

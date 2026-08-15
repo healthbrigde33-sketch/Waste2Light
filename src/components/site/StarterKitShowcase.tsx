@@ -35,7 +35,7 @@ export function StarterKitShowcase({ showCta = true }: { showCta?: boolean }) {
                 delay={i * 45}
                 className="group flex items-baseline gap-4 bg-background px-5 py-4 transition-colors hover:bg-elevated"
               >
-                <span className="font-mono text-[0.6875rem] tabular-nums text-solar">
+                <span className="font-mono text-[0.6875rem] tabular-nums text-brand">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <span className="min-w-0">

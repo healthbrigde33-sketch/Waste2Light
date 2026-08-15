@@ -5,10 +5,12 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Waste2Light design system.
- * Base: deep charcoal / near-black, warm white, neutral gray.
- * Accent: warm solar amber (energy accent). Secondary natural green, used sparingly.
- * All colors in oklch. Never hardcode colors in components.
+ * Waste2Light design system — per the Waste2Light Brand Guidelines.
+ * Base: warm white (#F7F8F3) with charcoal (#17231C) text and muted gray (#66736B).
+ * Identity: deep forest green (#0C4A23) / primary green (#0C5C2E) / energy green (#35A65A).
+ * Secondary accent: solar orange (#F28C28), optional solar yellow (#F6C453) — used sparingly.
+ * Ratio target: ~60% neutral, ~25% green, ~10% charcoal, ~5% orange/solar.
+ * Never hardcode colors in components — use these tokens.
  */
 
 @theme inline {
@@ -44,10 +46,16 @@
   --color-surface: var(--surface);
   --color-surface-foreground: var(--surface-foreground);
   --color-elevated: var(--elevated);
-  --color-solar: var(--solar);
-  --color-solar-foreground: var(--solar-foreground);
-  --color-leaf: var(--leaf);
   --color-hairline: var(--hairline);
+  --color-leaf: var(--leaf);
+  --color-forest: var(--forest);
+  --color-energy: var(--energy);
+  --color-ember: var(--ember);
+  --color-ember-ink: var(--ember-ink);
+  --color-ember-foreground: var(--ember-foreground);
+  --color-sun: var(--sun);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
 
   --font-display: "Manrope", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
@@ -70,76 +78,103 @@
 :root {
   --radius: 0.25rem;
 
-  --background: oklch(0.16 0.008 65);
-  --foreground: oklch(0.965 0.006 80);
+  --background: #f7f8f3;
+  --foreground: #17231c;
 
-  --surface: oklch(0.205 0.008 65);
-  --surface-foreground: oklch(0.965 0.006 80);
-  --elevated: oklch(0.245 0.009 65);
+  --surface: #ffffff;
+  --surface-foreground: #17231c;
+  --elevated: #ffffff;
 
-  --card: oklch(0.205 0.008 65);
-  --card-foreground: oklch(0.965 0.006 80);
-  --popover: oklch(0.205 0.008 65);
-  --popover-foreground: oklch(0.965 0.006 80);
+  --card: #ffffff;
+  --card-foreground: #17231c;
+  --popover: #ffffff;
+  --popover-foreground: #17231c;
 
-  --primary: oklch(0.78 0.155 68);
-  --primary-foreground: oklch(0.16 0.02 60);
+  --primary: #0c5c2e;
+  --primary-foreground: #ffffff;
 
-  --solar: oklch(0.78 0.155 68);
-  --solar-foreground: oklch(0.16 0.02 60);
-  --leaf: oklch(0.63 0.11 152);
+  /* Brand identity */
+  --forest: #0c4a23;
+  --brand: #0c5c2e;
+  --brand-foreground: #ffffff;
+  --energy: #35a65a;
+  --leaf: #35a65a;
+  --ember: #f28c28;
+  --ember-ink: #9a5410;
+  --ember-foreground: #17231c;
+  --sun: #f6c453;
 
-  --secondary: oklch(0.26 0.008 65);
-  --secondary-foreground: oklch(0.965 0.006 80);
-  --muted: oklch(0.26 0.008 65);
-  --muted-foreground: oklch(0.72 0.008 75);
-  --accent: oklch(0.28 0.012 65);
-  --accent-foreground: oklch(0.965 0.006 80);
+  --secondary: #eceee5;
+  --secondary-foreground: #17231c;
+  --muted: #eceee5;
+  --muted-foreground: #66736b;
+  --accent: #e6ebe3;
+  --accent-foreground: #17231c;
 
-  --destructive: oklch(0.62 0.2 25);
-  --destructive-foreground: oklch(0.98 0.005 80);
+  --destructive: oklch(0.55 0.19 27);
+  --destructive-foreground: #ffffff;
 
-  --border: oklch(1 0 0 / 12%);
-  --hairline: oklch(1 0 0 / 8%);
-  --input: oklch(1 0 0 / 16%);
-  --ring: oklch(0.78 0.155 68);
+  --border: color-mix(in oklab, #17231c 14%, transparent);
+  --hairline: color-mix(in oklab, #17231c 9%, transparent);
+  --input: color-mix(in oklab, #17231c 20%, transparent);
+  --ring: #0c5c2e;
 
-  --chart-1: oklch(0.78 0.155 68);
-  --chart-2: oklch(0.63 0.11 152);
-  --chart-3: oklch(0.72 0.008 75);
-  --chart-4: oklch(0.55 0.06 240);
-  --chart-5: oklch(0.86 0.09 90);
+  --chart-1: #0c5c2e;
+  --chart-2: #35a65a;
+  --chart-3: #66736b;
+  --chart-4: #f28c28;
+  --chart-5: #f6c453;
 
-  --sidebar: oklch(0.205 0.008 65);
-  --sidebar-foreground: oklch(0.965 0.006 80);
-  --sidebar-primary: oklch(0.78 0.155 68);
-  --sidebar-primary-foreground: oklch(0.16 0.02 60);
-  --sidebar-accent: oklch(0.26 0.008 65);
-  --sidebar-accent-foreground: oklch(0.965 0.006 80);
-  --sidebar-border: oklch(1 0 0 / 12%);
-  --sidebar-ring: oklch(0.78 0.155 68);
+  --sidebar: #ffffff;
+  --sidebar-foreground: #17231c;
+  --sidebar-primary: #0c5c2e;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #eceee5;
+  --sidebar-accent-foreground: #17231c;
+  --sidebar-border: color-mix(in oklab, #17231c 14%, transparent);
+  --sidebar-ring: #0c5c2e;
 }
 
-/* Light "warm white" inversion used for high-contrast editorial bands. */
+/*
+ * Deep-green dark band — used strategically for major statements,
+ * technology sections, final CTA and the footer.
+ * .on-dark applies the same tokens without painting a background,
+ * for chrome that floats over dark imagery.
+ */
+.invert-band,
+.on-dark {
+  --background: #0c4a23;
+  --foreground: #f7f8f3;
+  --surface: #0a3d1d;
+  --surface-foreground: #f7f8f3;
+  --elevated: #0f5729;
+  --card: #0a3d1d;
+  --card-foreground: #f7f8f3;
+  --popover: #0a3d1d;
+  --popover-foreground: #f7f8f3;
+  --muted: #0a3d1d;
+  --muted-foreground: color-mix(in oklab, #f7f8f3 68%, transparent);
+  --accent: #0f5729;
+  --accent-foreground: #f7f8f3;
+  --secondary: #0f5729;
+  --secondary-foreground: #f7f8f3;
+  --border: color-mix(in oklab, #f7f8f3 18%, transparent);
+  --hairline: color-mix(in oklab, #f7f8f3 12%, transparent);
+  --input: color-mix(in oklab, #f7f8f3 24%, transparent);
+  --primary: #35a65a;
+  --primary-foreground: #06240f;
+  --brand: #35a65a;
+  --brand-foreground: #06240f;
+  --ember-ink: #f6c453;
+  --leaf: #7bd39a;
+  --ring: #35a65a;
+}
+
+.on-dark {
+  color: var(--foreground);
+}
+
 .invert-band {
-  --background: oklch(0.975 0.006 85);
-  --foreground: oklch(0.19 0.01 65);
-  --surface: oklch(0.945 0.008 85);
-  --surface-foreground: oklch(0.19 0.01 65);
-  --elevated: oklch(0.99 0.004 85);
-  --card: oklch(0.99 0.004 85);
-  --card-foreground: oklch(0.19 0.01 65);
-  --muted: oklch(0.93 0.008 85);
-  --muted-foreground: oklch(0.45 0.012 70);
-  --accent: oklch(0.93 0.008 85);
-  --accent-foreground: oklch(0.19 0.01 65);
-  --secondary: oklch(0.93 0.008 85);
-  --secondary-foreground: oklch(0.19 0.01 65);
-  --border: oklch(0.19 0.01 65 / 14%);
-  --hairline: oklch(0.19 0.01 65 / 9%);
-  --input: oklch(0.19 0.01 65 / 20%);
-  --primary: oklch(0.55 0.15 62);
-  --primary-foreground: oklch(0.99 0.004 85);
   background-color: var(--background);
   color: var(--foreground);
 }
@@ -176,8 +211,8 @@
   }
 
   ::selection {
-    background: var(--color-solar);
-    color: var(--color-solar-foreground);
+    background: var(--color-brand);
+    color: var(--color-brand-foreground);
   }
 }
 

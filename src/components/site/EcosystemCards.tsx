@@ -22,11 +22,11 @@ export function EcosystemCards() {
               className="group relative flex h-full min-h-[19rem] flex-col justify-between overflow-hidden p-8 transition-colors duration-500 hover:bg-elevated lg:p-10"
             >
               <span
-                className="pointer-events-none absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 bg-solar transition-transform duration-700 group-hover:scale-x-100"
+                className="pointer-events-none absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 bg-brand transition-transform duration-700 group-hover:scale-x-100"
                 aria-hidden="true"
               />
               <div className="flex items-start justify-between gap-4">
-                <span className="font-mono text-xs tabular-nums text-solar">{item.index}</span>
+                <span className="font-mono text-xs tabular-nums text-brand">{item.index}</span>
                 <StatusTag status={item.status} />
               </div>
 
@@ -37,7 +37,7 @@ export function EcosystemCards() {
                 <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
                   {item.description}
                 </p>
-                <span className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-foreground transition-colors group-hover:text-solar">
+                <span className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-foreground transition-colors group-hover:text-brand">
                   {item.cta}
                   <ArrowUpRight
                     className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"

@@ -32,7 +32,7 @@ const columns = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-hairline bg-background">
+    <footer className="invert-band border-t border-hairline">
       <div className="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
         <div className="grid gap-12 md:grid-cols-[1.4fr_repeat(3,minmax(0,1fr))]">
           <div className="min-w-0">
@@ -55,7 +55,7 @@ export function Footer() {
                   <li key={l.to}>
                     <Link
                       to={l.to}
-                      className="text-sm text-foreground/80 transition-colors hover:text-solar"
+                      className="text-sm text-foreground/80 transition-colors hover:text-brand"
                     >
                       {l.label}
                     </Link>
@@ -76,7 +76,7 @@ export function Footer() {
                 <li key={s.href}>
                   <a
                     href={s.href}
-                    className="text-xs text-muted-foreground transition-colors hover:text-solar"
+                    className="text-xs text-muted-foreground transition-colors hover:text-brand"
                   >
                     {s.label}
                   </a>

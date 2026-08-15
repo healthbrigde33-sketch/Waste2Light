@@ -106,7 +106,7 @@ function GreenEnergyCornerPage() {
               delay={i * 35}
               className="flex gap-4 bg-background p-6 transition-colors hover:bg-elevated"
             >
-              <span className="font-mono text-[0.6875rem] tabular-nums text-solar">
+              <span className="font-mono text-[0.6875rem] tabular-nums text-brand">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <span className="text-sm leading-relaxed">{item}</span>

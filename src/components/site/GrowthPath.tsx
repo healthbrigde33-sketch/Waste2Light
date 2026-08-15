@@ -20,13 +20,13 @@ export function GrowthPath() {
               delay={i * 70}
               className="group relative flex flex-col bg-background p-6 transition-colors duration-300 hover:bg-elevated lg:p-7"
             >
-              <span className="font-mono text-xs tabular-nums text-solar">{step.level}</span>
+              <span className="font-mono text-xs tabular-nums text-brand">{step.level}</span>
               <h3 className="mt-5 font-display text-lg font-bold leading-tight tracking-tight">
                 {step.title}
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{step.body}</p>
               <span
-                className="mt-auto block h-px w-full origin-left scale-x-0 bg-solar pt-8 transition-transform duration-500 group-hover:scale-x-100"
+                className="mt-auto block h-px w-full origin-left scale-x-0 bg-brand pt-8 transition-transform duration-500 group-hover:scale-x-100"
                 aria-hidden="true"
               />
             </Reveal>

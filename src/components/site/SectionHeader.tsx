@@ -10,7 +10,7 @@ export function Eyebrow({ children, className }: { children: ReactNode; classNam
         className,
       )}
     >
-      <span className="h-px w-6 bg-solar" aria-hidden="true" />
+      <span className="h-px w-6 bg-brand" aria-hidden="true" />
       {children}
     </span>
   );

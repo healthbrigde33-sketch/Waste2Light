@@ -35,7 +35,7 @@ export function LearningJourney() {
                 <span
                   className={cn(
                     "font-mono text-xs tabular-nums transition-colors",
-                    i === active ? "text-solar" : "text-muted-foreground",
+                    i === active ? "text-brand" : "text-muted-foreground",
                   )}
                 >
                   0{i + 1}
@@ -45,7 +45,7 @@ export function LearningJourney() {
                 </span>
                 <span
                   className={cn(
-                    "ml-auto h-px flex-1 self-center bg-solar transition-transform duration-500 origin-left",
+                    "ml-auto h-px flex-1 self-center bg-brand transition-transform duration-500 origin-left",
                     i === active ? "scale-x-100" : "scale-x-0",
                   )}
                   aria-hidden="true"
@@ -64,12 +64,12 @@ export function LearningJourney() {
         >
           <div className="pointer-events-none absolute inset-0 hairline-grid opacity-60" aria-hidden="true" />
           <div
-            className="pointer-events-none absolute -right-24 -top-24 size-72 rounded-full bg-solar/10 blur-3xl transition-all duration-700"
+            className="pointer-events-none absolute -right-24 -top-24 size-72 rounded-full bg-brand/10 blur-3xl transition-all duration-700"
             style={{ transform: `translateY(${active * 22}px)` }}
             aria-hidden="true"
           />
           <div className="relative">
-            <span className="text-[0.6875rem] font-medium uppercase tracking-[0.22em] text-solar">
+            <span className="text-[0.6875rem] font-medium uppercase tracking-[0.22em] text-brand">
               {stage.label}
             </span>
             <p className="mt-6 font-display text-2xl font-bold leading-tight tracking-tight sm:text-3xl">
@@ -83,7 +83,7 @@ export function LearningJourney() {
                   key={i}
                   className={cn(
                     "h-0.5 flex-1 rounded-full transition-colors duration-500",
-                    i <= active ? "bg-solar" : "bg-border",
+                    i <= active ? "bg-brand" : "bg-border",
                   )}
                 />
               ))}

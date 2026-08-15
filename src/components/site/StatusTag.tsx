@@ -8,9 +8,9 @@ const labels: Record<ContentStatus, string> = {
 };
 
 const styles: Record<ContentStatus, string> = {
-  confirmed: "border-leaf/40 text-leaf",
+  confirmed: "border-brand/40 text-brand",
   future: "border-border text-muted-foreground",
-  placeholder: "border-solar/40 text-solar",
+  placeholder: "border-ember/60 text-ember-ink",
 };
 
 export function StatusTag({ status, className }: { status: ContentStatus; className?: string }) {
@@ -30,8 +30,8 @@ export function StatusTag({ status, className }: { status: ContentStatus; classN
 /** Explicit, non-deceptive placeholder block for information Waste2Light must supply. */
 export function PlaceholderNote({ children }: { children: React.ReactNode }) {
   return (
-    <p className="rounded-sm border border-dashed border-solar/35 bg-solar/[0.04] px-4 py-3 text-sm leading-relaxed text-muted-foreground">
-      <span className="mr-2 font-medium uppercase tracking-[0.14em] text-solar text-[0.625rem]">
+    <p className="rounded-sm border border-dashed border-ember/45 bg-ember/[0.06] px-4 py-3 text-sm leading-relaxed text-muted-foreground">
+      <span className="mr-2 font-medium uppercase tracking-[0.14em] text-ember-ink text-[0.625rem]">
         Placeholder
       </span>
       {children}

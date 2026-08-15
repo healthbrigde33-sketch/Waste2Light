@@ -12,7 +12,7 @@ function Column({ title, items, accent }: { title: string; items: string[]; acce
         {items.map((item) => (
           <li key={item} className="flex gap-3 text-sm leading-relaxed">
             <Check
-              className={accent ? "mt-0.5 size-4 shrink-0 text-solar" : "mt-0.5 size-4 shrink-0 text-leaf"}
+              className={accent ? "mt-0.5 size-4 shrink-0 text-brand" : "mt-0.5 size-4 shrink-0 text-leaf"}
               aria-hidden="true"
             />
             <span className="text-foreground/85">{item}</span>

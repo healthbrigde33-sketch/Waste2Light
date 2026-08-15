@@ -61,7 +61,7 @@ function ContactPage() {
                 <dd className="mt-2">
                   <a
                     href={`mailto:${contact.email}`}
-                    className="font-display text-xl font-bold tracking-tight transition-colors hover:text-solar"
+                    className="font-display text-xl font-bold tracking-tight transition-colors hover:text-brand"
                   >
                     {contact.email}
                   </a>
