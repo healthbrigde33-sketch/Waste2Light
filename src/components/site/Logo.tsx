@@ -6,7 +6,7 @@ export function Logo({ className, showWord = true }: { className?: string; showW
       <svg
         viewBox="0 0 32 32"
         aria-hidden="true"
-        className="h-7 w-7 shrink-0 text-solar"
+        className="h-7 w-7 shrink-0 text-brand"
         fill="none"
         stroke="currentColor"
         strokeWidth="1.6"
@@ -21,7 +21,7 @@ export function Logo({ className, showWord = true }: { className?: string; showW
       </svg>
       {showWord && (
         <span className="font-display text-[1.0625rem] font-extrabold tracking-tight">
-          Waste<span className="text-solar">2</span>Light
+          Waste<span className="text-brand">2</span>Light
         </span>
       )}
     </span>

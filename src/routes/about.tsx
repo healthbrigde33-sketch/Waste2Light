@@ -81,7 +81,7 @@ function AboutPage() {
             {founder.name ? (
               <>
                 <h3 className="font-display text-3xl font-bold tracking-tight">{founder.name}</h3>
-                <p className="mt-2 text-sm text-solar">{founder.role}</p>
+                <p className="mt-2 text-sm text-brand">{founder.role}</p>
                 <p className="mt-6 max-w-lg text-base leading-relaxed text-muted-foreground">
                   {founder.bio}
                 </p>
@@ -91,7 +91,7 @@ function AboutPage() {
                 <h3 className="font-display text-3xl font-bold tracking-tight text-muted-foreground">
                   Founder name
                 </h3>
-                <p className="mt-2 text-sm text-solar">{founder.role}</p>
+                <p className="mt-2 text-sm text-brand">{founder.role}</p>
                 <div className="mt-8 max-w-lg">
                   <PlaceholderNote>
                     Founder name, portrait and editorial biography to be supplied. This section is

@@ -27,7 +27,7 @@ export function LearningLayer() {
               <text x="24" y="163" fontSize="9" className="fill-muted-foreground">
                 KIT
               </text>
-              <g stroke="var(--color-solar)" strokeWidth="1.2" fill="none">
+              <g stroke="var(--color-brand)" strokeWidth="1.2" fill="none">
                 <rect x="30" y="182" width="18" height="18" />
                 <rect x="56" y="182" width="18" height="18" />
                 <rect x="30" y="208" width="18" height="18" />
@@ -38,7 +38,7 @@ export function LearningLayer() {
               <path
                 d="M140 190 C 170 190, 175 120, 205 120"
                 fill="none"
-                stroke="var(--color-solar)"
+                stroke="var(--color-brand)"
                 strokeWidth="1.2"
                 strokeDasharray="4 170"
                 style={{ animation: "energy-dash 7s linear infinite" }}
@@ -46,8 +46,8 @@ export function LearningLayer() {
               <path d="M140 190 C 170 190, 175 120, 205 120" fill="none" stroke="var(--color-hairline)" />
 
               <rect x="208" y="40" width="76" height="150" rx="10" fill="none" stroke="var(--color-border)" />
-              <rect x="216" y="56" width="60" height="86" rx="2" fill="var(--color-solar)" fillOpacity="0.09" stroke="var(--color-solar)" strokeOpacity="0.5" />
-              <path d="M240 88l16 11-16 11z" fill="var(--color-solar)" />
+              <rect x="216" y="56" width="60" height="86" rx="2" fill="var(--color-brand)" fillOpacity="0.09" stroke="var(--color-brand)" strokeOpacity="0.5" />
+              <path d="M240 88l16 11-16 11z" fill="var(--color-brand)" />
               <path d="M216 156h44" stroke="var(--color-hairline)" />
               <path d="M216 166h30" stroke="var(--color-hairline)" />
               <text x="208" y="212" fontSize="9" className="fill-muted-foreground">

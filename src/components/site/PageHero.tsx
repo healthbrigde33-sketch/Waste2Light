@@ -13,10 +13,14 @@ export function PageHero({
   children?: ReactNode;
 }) {
   return (
-    <section className="relative isolate overflow-hidden border-b border-hairline">
-      <div className="pointer-events-none absolute inset-0 hairline-grid opacity-60" aria-hidden="true" />
+    <section className="invert-band relative isolate overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 hairline-grid opacity-40" aria-hidden="true" />
       <div
-        className="pointer-events-none absolute -left-40 top-0 size-[36rem] rounded-full bg-solar/[0.07] blur-[120px]"
+        className="pointer-events-none absolute -left-40 top-0 size-[36rem] rounded-full bg-energy/20 blur-[120px]"
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none absolute -right-24 bottom-0 size-[28rem] rounded-full bg-sun/10 blur-[140px]"
         aria-hidden="true"
       />
       <div className="relative mx-auto max-w-7xl px-5 pb-20 pt-36 lg:px-8 lg:pb-28 lg:pt-48">

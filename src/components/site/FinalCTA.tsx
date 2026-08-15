@@ -4,7 +4,7 @@ import { Reveal } from "./Reveal";
 
 export function FinalCTA() {
   return (
-    <section className="relative isolate overflow-hidden">
+    <section className="invert-band relative isolate overflow-hidden">
       <img
         src={ctaImage}
         alt=""

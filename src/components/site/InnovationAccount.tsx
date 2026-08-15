@@ -23,7 +23,7 @@ export function InnovationAccount() {
           <ul className="grid gap-px overflow-hidden rounded-sm border border-hairline bg-hairline">
             {supports.map((s, i) => (
               <li key={s} className="flex items-baseline gap-4 bg-background px-5 py-4">
-                <span className="font-mono text-[0.6875rem] tabular-nums text-solar">
+                <span className="font-mono text-[0.6875rem] tabular-nums text-brand">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <span className="text-sm">{s}</span>

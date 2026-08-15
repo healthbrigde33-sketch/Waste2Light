@@ -9,10 +9,10 @@ const base =
   "group inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-all duration-300 min-h-11";
 
 const variants: Record<Variant, string> = {
-  solid: "bg-solar text-solar-foreground hover:brightness-110 hover:gap-3",
+  solid: "bg-brand text-brand-foreground hover:brightness-110 hover:gap-3",
   outline:
-    "border border-border bg-transparent text-foreground hover:border-solar hover:text-solar hover:gap-3",
-  ghost: "px-0 text-foreground hover:text-solar hover:gap-3",
+    "border border-border bg-transparent text-foreground hover:border-brand hover:text-brand hover:gap-3",
+  ghost: "px-0 text-foreground hover:text-brand hover:gap-3",
 };
 
 type CtaLinkProps = ComponentProps<typeof Link> & {

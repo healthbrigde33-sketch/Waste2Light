@@ -36,7 +36,7 @@ function Index() {
   return (
     <>
       {/* HERO */}
-      <section className="relative isolate flex min-h-[92svh] items-end overflow-hidden">
+      <section className="on-dark relative isolate flex min-h-[92svh] items-end overflow-hidden bg-forest">
         <img
           src={heroImage}
           alt="Close view of a solar panel array with luminous energy flowing across the cells and a wind turbine in the distance"
@@ -47,7 +47,7 @@ function Index() {
           style={{ animation: "slow-drift 28s ease-in-out infinite" }}
         />
         <div
-          className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/30"
+          className="absolute inset-0 bg-gradient-to-t from-background via-background/75 to-background/35"
           aria-hidden="true"
         />
         <div className="pointer-events-none absolute inset-0 hairline-grid opacity-30" aria-hidden="true" />
@@ -109,7 +109,7 @@ function Index() {
                 delay={i * 60}
                 className="group flex flex-col bg-background p-7 transition-colors hover:bg-elevated lg:p-8"
               >
-                <span className="font-mono text-xs tabular-nums text-solar">
+                <span className="font-mono text-xs tabular-nums text-brand">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <h3 className="mt-6 font-display text-xl font-bold tracking-tight">{area.title}</h3>
@@ -126,11 +126,18 @@ function Index() {
       </section>
 
       {/* SIGNATURE VISUAL */}
-      <section className="mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-32">
-        <SectionHeader eyebrow="Signature" title="See energy differently." align="center" />
-        <Reveal className="mt-16">
-          <EnergyFlowVisual />
-        </Reveal>
+      <section className="invert-band relative isolate overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 hairline-grid opacity-40" aria-hidden="true" />
+        <div
+          className="pointer-events-none absolute left-1/4 top-1/2 size-[34rem] -translate-y-1/2 rounded-full bg-energy/15 blur-[130px]"
+          aria-hidden="true"
+        />
+        <div className="relative mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-32">
+          <SectionHeader eyebrow="Signature" title="See energy differently." align="center" />
+          <Reveal className="mt-16">
+            <EnergyFlowVisual />
+          </Reveal>
+        </div>
       </section>
 
       {/* GREEN ENERGY CORNER FEATURE */}

@@ -22,6 +22,14 @@ export function Navbar() {
   }, [pathname]);
 
   useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
@@ -34,8 +42,8 @@ export function Navbar() {
         className={cn(
           "transition-all duration-500",
           scrolled || open
-            ? "border-b border-hairline bg-background/85 backdrop-blur-xl"
-            : "border-b border-transparent",
+            ? "border-b border-hairline bg-background/90 backdrop-blur-xl"
+            : "on-dark border-b border-transparent",
         )}
       >
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-5 sm:h-[4.5rem] lg:px-8">
@@ -59,7 +67,7 @@ export function Navbar() {
           <div className="flex items-center gap-2">
             <Link
               to="/contact"
-              className="hidden rounded-full bg-solar px-5 py-2.5 text-sm font-medium text-solar-foreground transition-all duration-300 hover:brightness-110 sm:inline-flex"
+              className="hidden rounded-full bg-brand px-5 py-2.5 text-sm font-medium text-brand-foreground transition-all duration-300 hover:brightness-110 sm:inline-flex"
             >
               Partner With Us
             </Link>
@@ -68,9 +76,9 @@ export function Navbar() {
               onClick={() => setOpen((v) => !v)}
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
-              className="inline-flex size-11 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:border-solar hover:text-solar lg:hidden"
+              className="inline-flex size-11 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:border-brand hover:text-brand lg:hidden"
             >
-              {open ? <Menu className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
+              {open ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
             </button>
           </div>
         </div>
@@ -101,7 +109,7 @@ export function Navbar() {
               key={item.to}
               to={item.to}
               tabIndex={open ? 0 : -1}
-              className="border-b border-hairline py-4 font-display text-2xl font-bold tracking-tight text-foreground transition-colors hover:text-solar"
+              className="border-b border-hairline py-4 font-display text-2xl font-bold tracking-tight text-foreground transition-colors hover:text-brand"
               style={{ transitionDelay: `${i * 20}ms` }}
             >
               {item.label}
@@ -110,7 +118,7 @@ export function Navbar() {
           <Link
             to="/contact"
             tabIndex={open ? 0 : -1}
-            className="mt-8 inline-flex min-h-12 items-center justify-center rounded-full bg-solar px-6 text-sm font-medium text-solar-foreground"
+            className="mt-8 inline-flex min-h-12 items-center justify-center rounded-full bg-brand px-6 text-sm font-medium text-brand-foreground"
           >
             Partner With Us
           </Link>

@@ -64,7 +64,7 @@ function ProjectsPage() {
                     />
                   )}
                   <div className="flex flex-1 flex-col p-7">
-                    <span className="text-[0.6875rem] uppercase tracking-[0.18em] text-solar">
+                    <span className="text-[0.6875rem] uppercase tracking-[0.18em] text-brand">
                       {p.category}
                     </span>
                     <h2 className="mt-4 font-display text-xl font-bold tracking-tight">{p.name}</h2>

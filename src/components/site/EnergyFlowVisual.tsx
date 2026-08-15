@@ -22,9 +22,9 @@ export function EnergyFlowVisual() {
       >
         <defs>
           <linearGradient id="flow-grad" x1="0" x2="1">
-            <stop offset="0%" stopColor="var(--color-solar)" stopOpacity="0" />
-            <stop offset="50%" stopColor="var(--color-solar)" stopOpacity="1" />
-            <stop offset="100%" stopColor="var(--color-solar)" stopOpacity="0" />
+            <stop offset="0%" stopColor="var(--color-brand)" stopOpacity="0" />
+            <stop offset="50%" stopColor="var(--color-brand)" stopOpacity="1" />
+            <stop offset="100%" stopColor="var(--color-brand)" stopOpacity="0" />
           </linearGradient>
         </defs>
 
@@ -32,18 +32,20 @@ export function EnergyFlowVisual() {
         <path
           d="M60 60 C 200 60, 240 140, 420 140"
           fill="none"
-          stroke="var(--color-border)"
-          strokeWidth="1"
+          stroke="var(--color-leaf)"
+          strokeOpacity="0.5"
+          strokeWidth="1.25"
         />
         <path
           d="M60 60 C 200 60, 240 140, 420 140"
           fill="none"
           stroke="var(--color-leaf)"
-          strokeWidth="1.5"
+          strokeWidth="2"
           strokeDasharray="6 260"
           style={{ animation: "energy-dash 9s linear infinite" }}
         />
-        <text x="60" y="42" className="fill-muted-foreground text-[11px]" fontSize="11">
+        <circle cx="60" cy="60" r="4" fill="var(--color-energy)" />
+        <text x="76" y="46" className="fill-muted-foreground text-[11px]" fontSize="11">
           Wind
         </text>
         <text x="150" y="42" className="fill-muted-foreground text-[11px]" fontSize="11">
@@ -51,7 +53,15 @@ export function EnergyFlowVisual() {
         </text>
 
         {/* main spine */}
-        <line x1="60" y1="140" x2="780" y2="140" stroke="var(--color-border)" strokeWidth="1" />
+        <line
+          x1="60"
+          y1="140"
+          x2="780"
+          y2="140"
+          stroke="var(--color-leaf)"
+          strokeOpacity="0.55"
+          strokeWidth="1.25"
+        />
         <line
           x1="60"
           y1="140"
@@ -65,17 +75,24 @@ export function EnergyFlowVisual() {
 
         {nodes.map((n, i) => (
           <g key={n.label}>
-            <circle cx={n.x} cy={140} r="5" fill="var(--color-background)" stroke="var(--color-solar)" strokeWidth="1.5" />
+            <circle
+              cx={n.x}
+              cy={140}
+              r="5"
+              fill="var(--color-background)"
+              stroke={i === 0 ? "var(--color-sun)" : "var(--color-brand)"}
+              strokeWidth="1.75"
+            />
             <circle
               cx={n.x}
               cy={140}
               r="14"
               fill="none"
-              stroke="var(--color-solar)"
-              strokeOpacity="0.22"
+              stroke={i === 0 ? "var(--color-sun)" : "var(--color-brand)"}
+              strokeOpacity="0.35"
               strokeWidth="1"
             />
-            <line x1={n.x} y1={152} x2={n.x} y2={188} stroke="var(--color-hairline)" strokeWidth="1" />
+            <line x1={n.x} y1={152} x2={n.x} y2={188} stroke="var(--color-leaf)" strokeOpacity="0.4" strokeWidth="1" />
             <text
               x={n.x}
               y={206}

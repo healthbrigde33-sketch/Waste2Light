@@ -42,7 +42,7 @@ export function LabExplorer() {
                   className={cn(
                     "absolute rounded-sm border p-2.5 text-left transition-all duration-300 sm:p-3",
                     isActive
-                      ? "border-solar bg-solar/10 text-foreground"
+                      ? "border-brand bg-brand/10 text-foreground"
                       : "border-border bg-background/40 text-muted-foreground hover:border-foreground/40 hover:text-foreground",
                   )}
                   style={{
@@ -62,7 +62,7 @@ export function LabExplorer() {
         </div>
 
         <div className="flex flex-col justify-center">
-          <span className="text-[0.6875rem] font-medium uppercase tracking-[0.22em] text-solar">
+          <span className="text-[0.6875rem] font-medium uppercase tracking-[0.22em] text-brand">
             Zone
           </span>
           <h3 className="mt-4 font-display text-2xl font-bold tracking-tight sm:text-3xl">{zone.name}</h3>
@@ -77,7 +77,7 @@ export function LabExplorer() {
                   className={cn(
                     "w-full rounded-full border px-3 py-2 text-left text-xs transition-colors",
                     z.id === active
-                      ? "border-solar text-solar"
+                      ? "border-brand text-brand"
                       : "border-border text-muted-foreground",
                   )}
                 >
