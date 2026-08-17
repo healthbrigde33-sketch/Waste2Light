@@ -5,6 +5,7 @@ import { GrowthPath } from "@/components/site/GrowthPath";
 import { LabExplorer } from "@/components/site/LabExplorer";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
+import { SchoolApplicationForm } from "@/components/site/SchoolApplicationForm";
 import { SchoolResponsibilities } from "@/components/site/SchoolResponsibilities";
 import { SectionHeader } from "@/components/site/SectionHeader";
 import { PlaceholderNote } from "@/components/site/StatusTag";
