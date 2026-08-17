@@ -2,8 +2,8 @@ import { PageHero } from "./PageHero";
 
 export type LegalSection = {
   heading: string;
-  paragraphs?: string[];
-  bullets?: string[];
+  paragraphs?: string[] | undefined;
+  bullets?: string[] | undefined;
 };
 
 export function LegalPage({
