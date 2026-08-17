@@ -91,7 +91,6 @@ export const Route = createFileRoute("/privacy")({
             "Professional advisers, such as accountants and legal advisers, where required.",
             "Authorities, where disclosure is legally required.",
           ],
-          paragraphs2: undefined,
         },
         {
           heading: "8. International transfers",
@@ -112,7 +111,6 @@ export const Route = createFileRoute("/privacy")({
             "Receive it in a portable format, where technically feasible.",
             "Withdraw consent you previously gave, without affecting processing already carried out.",
           ],
-          paragraphs3: undefined,
         },
         {
           heading: "10. How to exercise your rights",
@@ -133,7 +131,7 @@ export const Route = createFileRoute("/privacy")({
             "We may update this policy as our services and legal obligations change. The date at the top of this page shows when it was last revised. Material changes will be highlighted on this page.",
           ],
         },
-      ].map(({ heading, paragraphs, bullets }) => ({ heading, paragraphs, bullets }))}
+      ]}
     />
   ),
 });
