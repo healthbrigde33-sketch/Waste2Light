@@ -3,6 +3,7 @@ import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeader } from "@/components/site/SectionHeader";
 import { PlaceholderNote } from "@/components/site/StatusTag";
+import { EnquiryForm } from "@/components/site/EnquiryForm";
 import { contact } from "@/content/site";
 
 const title = "Partner With Us — Waste2Light";
