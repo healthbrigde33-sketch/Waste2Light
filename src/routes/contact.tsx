@@ -3,6 +3,7 @@ import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeader } from "@/components/site/SectionHeader";
 import { PlaceholderNote } from "@/components/site/StatusTag";
+import { EnquiryForm } from "@/components/site/EnquiryForm";
 import { contact } from "@/content/site";
 
 const title = "Partner With Us — Waste2Light";
@@ -108,6 +109,17 @@ function ContactPage() {
               </Reveal>
             ))}
           </ul>
+        </div>
+      </section>
+
+      <section className="border-t border-hairline bg-surface">
+        <div className="mx-auto max-w-3xl px-5 py-24 lg:px-8 lg:py-32">
+          <SectionHeader
+            eyebrow="Send a message"
+            title="Tell us what you're working on."
+            lede="Fill in the form and we'll reply by email."
+          />
+          <EnquiryForm className="mt-12" />
         </div>
       </section>
     </>

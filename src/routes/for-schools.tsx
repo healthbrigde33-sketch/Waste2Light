@@ -5,6 +5,7 @@ import { GrowthPath } from "@/components/site/GrowthPath";
 import { LabExplorer } from "@/components/site/LabExplorer";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
+import { SchoolApplicationForm } from "@/components/site/SchoolApplicationForm";
 import { SchoolResponsibilities } from "@/components/site/SchoolResponsibilities";
 import { SectionHeader } from "@/components/site/SectionHeader";
 import { PlaceholderNote } from "@/components/site/StatusTag";
@@ -147,6 +148,17 @@ function ForSchoolsPage() {
         </div>
         <div className="mt-10">
           <CtaLink to="/contact">Start the conversation</CtaLink>
+        </div>
+      </section>
+
+      <section id="apply" className="border-y border-hairline bg-surface scroll-mt-24">
+        <div className="mx-auto max-w-3xl px-5 py-24 lg:px-8 lg:py-32">
+          <SectionHeader
+            eyebrow="Apply"
+            title="Register your school's interest."
+            lede="Share a few details and we'll get back to you about setting up a Green Energy Corner."
+          />
+          <SchoolApplicationForm className="mt-12" />
         </div>
       </section>
 
