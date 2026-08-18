@@ -3,45 +3,54 @@ import { toast } from "sonner";
 import { ArrowRight, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { cn } from "@/lib/utils";
+import { schoolApplicationSchema, fieldErrors } from "@/lib/form-schemas";
 
 const fieldClass =
   "mt-2 w-full rounded-sm border border-hairline bg-background px-4 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-brand focus:ring-1 focus:ring-brand";
 
+const errorFieldClass = "border-destructive focus:border-destructive focus:ring-destructive";
+
 const labelClass = "text-[0.6875rem] uppercase tracking-[0.2em] text-muted-foreground";
+
+function FieldError({ message }: { message?: string }) {
+  if (!message) return null;
+  return (
+    <p role="alert" className="mt-2 text-xs text-destructive">
+      {message}
+    </p>
+  );
+}
 
 export function SchoolApplicationForm({ className }: { className?: string }) {
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
     const data = new FormData(form);
 
-    const payload = {
-      school_name: String(data.get("school_name") ?? "").trim(),
-      contact_name: String(data.get("contact_name") ?? "").trim(),
-      role: String(data.get("role") ?? "").trim(),
-      email: String(data.get("email") ?? "").trim(),
-      phone: String(data.get("phone") ?? "").trim() || null,
-      location: String(data.get("location") ?? "").trim(),
-      student_count: String(data.get("student_count") ?? "").trim() || null,
-      notes: String(data.get("notes") ?? "").trim() || null,
-    };
+    const parsed = schoolApplicationSchema.safeParse({
+      school_name: String(data.get("school_name") ?? ""),
+      contact_name: String(data.get("contact_name") ?? ""),
+      role: String(data.get("role") ?? ""),
+      email: String(data.get("email") ?? ""),
+      phone: String(data.get("phone") ?? ""),
+      location: String(data.get("location") ?? ""),
+      student_count: String(data.get("student_count") ?? ""),
+      notes: String(data.get("notes") ?? ""),
+    });
 
-    if (
-      !payload.school_name ||
-      !payload.contact_name ||
-      !payload.role ||
-      !payload.email ||
-      !payload.location
-    ) {
-      toast.error("Please complete the required fields.");
+    if (!parsed.success) {
+      setErrors(fieldErrors(parsed.error));
+      toast.error("Please check the highlighted fields.");
       return;
     }
 
+    setErrors({});
     setSubmitting(true);
-    const { error } = await supabase.from("school_applications").insert(payload);
+    const { error } = await supabase.from("school_applications").insert(parsed.data);
     setSubmitting(false);
 
     if (error) {
@@ -74,13 +83,21 @@ export function SchoolApplicationForm({ className }: { className?: string }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className={cn("space-y-6", className)}>
+    <form onSubmit={handleSubmit} noValidate className={cn("space-y-6", className)}>
       <div className="grid gap-6 sm:grid-cols-2">
         <div>
           <label className={labelClass} htmlFor="sch-name">
             School name
           </label>
-          <input id="sch-name" name="school_name" required className={fieldClass} />
+          <input
+            id="sch-name"
+            name="school_name"
+            required
+            maxLength={100}
+            aria-invalid={!!errors['school_name']}
+            className={cn(fieldClass, errors['school_name'] && errorFieldClass)}
+          />
+          <FieldError message={errors['school_name']} />
         </div>
         <div>
           <label className={labelClass} htmlFor="sch-location">
@@ -90,9 +107,12 @@ export function SchoolApplicationForm({ className }: { className?: string }) {
             id="sch-location"
             name="location"
             required
+            maxLength={120}
             placeholder="City, state or region"
-            className={fieldClass}
+            aria-invalid={!!errors['location']}
+            className={cn(fieldClass, errors['location'] && errorFieldClass)}
           />
+          <FieldError message={errors['location']} />
         </div>
       </div>
 
@@ -105,9 +125,12 @@ export function SchoolApplicationForm({ className }: { className?: string }) {
             id="sch-contact"
             name="contact_name"
             required
+            maxLength={100}
             autoComplete="name"
-            className={fieldClass}
+            aria-invalid={!!errors['contact_name']}
+            className={cn(fieldClass, errors['contact_name'] && errorFieldClass)}
           />
+          <FieldError message={errors['contact_name']} />
         </div>
         <div>
           <label className={labelClass} htmlFor="sch-role">
@@ -117,9 +140,12 @@ export function SchoolApplicationForm({ className }: { className?: string }) {
             id="sch-role"
             name="role"
             required
+            maxLength={100}
             placeholder="Principal, STEM coordinator, teacher"
-            className={fieldClass}
+            aria-invalid={!!errors['role']}
+            className={cn(fieldClass, errors['role'] && errorFieldClass)}
           />
+          <FieldError message={errors['role']} />
         </div>
       </div>
 
@@ -133,15 +159,26 @@ export function SchoolApplicationForm({ className }: { className?: string }) {
             name="email"
             type="email"
             required
+            maxLength={255}
             autoComplete="email"
-            className={fieldClass}
+            aria-invalid={!!errors['email']}
+            className={cn(fieldClass, errors['email'] && errorFieldClass)}
           />
+          <FieldError message={errors['email']} />
         </div>
         <div>
           <label className={labelClass} htmlFor="sch-phone">
             Phone (optional)
           </label>
-          <input id="sch-phone" name="phone" type="tel" className={fieldClass} />
+          <input
+            id="sch-phone"
+            name="phone"
+            type="tel"
+            maxLength={20}
+            aria-invalid={!!errors['phone']}
+            className={cn(fieldClass, errors['phone'] && errorFieldClass)}
+          />
+          <FieldError message={errors['phone']} />
         </div>
       </div>
 
@@ -149,14 +186,29 @@ export function SchoolApplicationForm({ className }: { className?: string }) {
         <label className={labelClass} htmlFor="sch-students">
           Approximate number of students (optional)
         </label>
-        <input id="sch-students" name="student_count" className={fieldClass} />
+        <input
+          id="sch-students"
+          name="student_count"
+          maxLength={30}
+          aria-invalid={!!errors['student_count']}
+          className={cn(fieldClass, errors['student_count'] && errorFieldClass)}
+        />
+        <FieldError message={errors['student_count']} />
       </div>
 
       <div>
         <label className={labelClass} htmlFor="sch-notes">
           Anything else we should know (optional)
         </label>
-        <textarea id="sch-notes" name="notes" rows={4} className={cn(fieldClass, "resize-y")} />
+        <textarea
+          id="sch-notes"
+          name="notes"
+          rows={4}
+          maxLength={2000}
+          aria-invalid={!!errors['notes']}
+          className={cn(fieldClass, "resize-y", errors['notes'] && errorFieldClass)}
+        />
+        <FieldError message={errors['notes']} />
       </div>
 
       <button

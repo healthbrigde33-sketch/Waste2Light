@@ -3,6 +3,7 @@ import { toast } from "sonner";
 import { ArrowRight, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { cn } from "@/lib/utils";
+import { enquirySchema, fieldErrors } from "@/lib/form-schemas";
 
 const enquiryTypes = [
   "School enquiry",
@@ -15,32 +16,46 @@ const enquiryTypes = [
 const fieldClass =
   "mt-2 w-full rounded-sm border border-hairline bg-background px-4 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-brand focus:ring-1 focus:ring-brand";
 
+const errorFieldClass = "border-destructive focus:border-destructive focus:ring-destructive";
+
 const labelClass = "text-[0.6875rem] uppercase tracking-[0.2em] text-muted-foreground";
+
+function FieldError({ message }: { message?: string }) {
+  if (!message) return null;
+  return (
+    <p role="alert" className="mt-2 text-xs text-destructive">
+      {message}
+    </p>
+  );
+}
 
 export function EnquiryForm({ className }: { className?: string }) {
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
     const data = new FormData(form);
 
-    const payload = {
-      name: String(data.get("name") ?? "").trim(),
-      email: String(data.get("email") ?? "").trim(),
-      organisation: String(data.get("organisation") ?? "").trim() || null,
+    const parsed = enquirySchema.safeParse({
+      name: String(data.get("name") ?? ""),
+      email: String(data.get("email") ?? ""),
+      organisation: String(data.get("organisation") ?? ""),
       enquiry_type: String(data.get("enquiry_type") ?? "General"),
-      message: String(data.get("message") ?? "").trim(),
-    };
+      message: String(data.get("message") ?? ""),
+    });
 
-    if (!payload.name || !payload.email || !payload.message) {
-      toast.error("Please complete your name, email and message.");
+    if (!parsed.success) {
+      setErrors(fieldErrors(parsed.error));
+      toast.error("Please check the highlighted fields.");
       return;
     }
 
+    setErrors({});
     setSubmitting(true);
-    const { error } = await supabase.from("contact_enquiries").insert(payload);
+    const { error } = await supabase.from("contact_enquiries").insert(parsed.data);
     setSubmitting(false);
 
     if (error) {
@@ -73,13 +88,22 @@ export function EnquiryForm({ className }: { className?: string }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className={cn("space-y-6", className)}>
+    <form onSubmit={handleSubmit} noValidate className={cn("space-y-6", className)}>
       <div className="grid gap-6 sm:grid-cols-2">
         <div>
           <label className={labelClass} htmlFor="enq-name">
             Your name
           </label>
-          <input id="enq-name" name="name" required autoComplete="name" className={fieldClass} />
+          <input
+            id="enq-name"
+            name="name"
+            required
+            maxLength={100}
+            autoComplete="name"
+            aria-invalid={!!errors['name']}
+            className={cn(fieldClass, errors['name'] && errorFieldClass)}
+          />
+          <FieldError message={errors['name']} />
         </div>
         <div>
           <label className={labelClass} htmlFor="enq-email">
@@ -90,9 +114,12 @@ export function EnquiryForm({ className }: { className?: string }) {
             name="email"
             type="email"
             required
+            maxLength={255}
             autoComplete="email"
-            className={fieldClass}
+            aria-invalid={!!errors['email']}
+            className={cn(fieldClass, errors['email'] && errorFieldClass)}
           />
+          <FieldError message={errors['email']} />
         </div>
       </div>
 
@@ -101,7 +128,14 @@ export function EnquiryForm({ className }: { className?: string }) {
           <label className={labelClass} htmlFor="enq-org">
             School or organisation
           </label>
-          <input id="enq-org" name="organisation" className={fieldClass} />
+          <input
+            id="enq-org"
+            name="organisation"
+            maxLength={120}
+            aria-invalid={!!errors['organisation']}
+            className={cn(fieldClass, errors['organisation'] && errorFieldClass)}
+          />
+          <FieldError message={errors['organisation']} />
         </div>
         <div>
           <label className={labelClass} htmlFor="enq-type">
@@ -126,8 +160,11 @@ export function EnquiryForm({ className }: { className?: string }) {
           name="message"
           rows={5}
           required
-          className={cn(fieldClass, "resize-y")}
+          maxLength={2000}
+          aria-invalid={!!errors['message']}
+          className={cn(fieldClass, "resize-y", errors['message'] && errorFieldClass)}
         />
+        <FieldError message={errors['message']} />
       </div>
 
       <button
