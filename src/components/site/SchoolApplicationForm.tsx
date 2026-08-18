@@ -12,7 +12,7 @@ const errorFieldClass = "border-destructive focus:border-destructive focus:ring-
 
 const labelClass = "text-[0.6875rem] uppercase tracking-[0.2em] text-muted-foreground";
 
-function FieldError({ message }: { message?: string }) {
+function FieldError({ message }: { message?: string | undefined }) {
   if (!message) return null;
   return (
     <p role="alert" className="mt-2 text-xs text-destructive">
