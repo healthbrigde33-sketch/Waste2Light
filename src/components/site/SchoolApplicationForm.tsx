@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { toast } from "sonner";
+import { useServerFn } from "@tanstack/react-start";
 import { ArrowRight, Loader2 } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
 import { cn } from "@/lib/utils";
 import { schoolApplicationSchema, fieldErrors } from "@/lib/form-schemas";
+import { submitSchoolApplication } from "@/lib/notifications.functions";
 
 const fieldClass =
   "mt-2 w-full rounded-sm border border-hairline bg-background px-4 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-brand focus:ring-1 focus:ring-brand";
