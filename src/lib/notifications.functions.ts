@@ -52,7 +52,13 @@ export const submitEnquiry = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => enquiryPayloadSchema.parse(input))
   .handler(async ({ data }) => {
     const supabase = serverSupabase();
-    const { error } = await supabase.from("contact_enquiries").insert(data);
+    const { error } = await supabase.from("contact_enquiries").insert({
+      name: data.name,
+      email: data.email,
+      organisation: data.organisation ?? null,
+      enquiry_type: data.enquiry_type,
+      message: data.message,
+    });
     if (error) {
       console.error("[enquiry] insert failed", error.message);
       throw new Error("Could not save enquiry");
@@ -77,7 +83,16 @@ export const submitSchoolApplication = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => schoolApplicationPayloadSchema.parse(input))
   .handler(async ({ data }) => {
     const supabase = serverSupabase();
-    const { error } = await supabase.from("school_applications").insert(data);
+    const { error } = await supabase.from("school_applications").insert({
+      school_name: data.school_name,
+      contact_name: data.contact_name,
+      role: data.role,
+      email: data.email,
+      phone: data.phone ?? null,
+      location: data.location,
+      student_count: data.student_count ?? null,
+      notes: data.notes ?? null,
+    });
     if (error) {
       console.error("[school application] insert failed", error.message);
       throw new Error("Could not save application");
