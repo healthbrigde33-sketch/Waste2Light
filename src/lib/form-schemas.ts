@@ -64,6 +64,20 @@ export const schoolApplicationSchema = z.object({
   notes: optionalText(2000),
 });
 
+// Server-side schemas: validate the already-normalised payload the client sends
+// (optional fields arrive as null after the client-side transforms above).
+const nullableText = (max: number) => z.string().trim().max(max).nullable().optional();
+
+export const enquiryPayloadSchema = enquirySchema.extend({
+  organisation: nullableText(120),
+});
+
+export const schoolApplicationPayloadSchema = schoolApplicationSchema.extend({
+  phone: z.string().trim().max(20).nullable().optional(),
+  student_count: nullableText(30),
+  notes: nullableText(2000),
+});
+
 export type EnquiryInput = z.infer<typeof enquirySchema>;
 export type SchoolApplicationInput = z.infer<typeof schoolApplicationSchema>;
 

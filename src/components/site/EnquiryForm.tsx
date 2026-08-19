@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { toast } from "sonner";
+import { useServerFn } from "@tanstack/react-start";
 import { ArrowRight, Loader2 } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
 import { cn } from "@/lib/utils";
 import { enquirySchema, fieldErrors } from "@/lib/form-schemas";
+import { submitEnquiry } from "@/lib/notifications.functions";
 
 const enquiryTypes = [
   "School enquiry",
@@ -30,6 +31,7 @@ function FieldError({ message }: { message?: string | undefined }) {
 }
 
 export function EnquiryForm({ className }: { className?: string }) {
+  const send = useServerFn(submitEnquiry);
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -55,13 +57,14 @@ export function EnquiryForm({ className }: { className?: string }) {
 
     setErrors({});
     setSubmitting(true);
-    const { error } = await supabase.from("contact_enquiries").insert(parsed.data);
-    setSubmitting(false);
-
-    if (error) {
+    try {
+      await send({ data: parsed.data });
+    } catch {
+      setSubmitting(false);
       toast.error("Your message could not be sent. Please try again.");
       return;
     }
+    setSubmitting(false);
 
     form.reset();
     setDone(true);

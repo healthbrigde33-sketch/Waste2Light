@@ -1,0 +1,1 @@
+delete from public.contact_enquiries where email = 'test.runner@example.com';
