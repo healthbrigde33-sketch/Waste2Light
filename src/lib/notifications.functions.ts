@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { createClient } from "@supabase/supabase-js";
 import type { Database } from "@/integrations/supabase/types";
-import { enquirySchema, schoolApplicationSchema } from "@/lib/form-schemas";
+import { enquiryPayloadSchema, schoolApplicationPayloadSchema } from "@/lib/form-schemas";
 
 type NotifyPayload = {
   form: "Contact enquiry" | "School application";
@@ -49,7 +49,7 @@ function serverSupabase() {
 }
 
 export const submitEnquiry = createServerFn({ method: "POST" })
-  .inputValidator((input: unknown) => enquirySchema.parse(input))
+  .inputValidator((input: unknown) => enquiryPayloadSchema.parse(input))
   .handler(async ({ data }) => {
     const supabase = serverSupabase();
     const { error } = await supabase.from("contact_enquiries").insert(data);
@@ -74,7 +74,7 @@ export const submitEnquiry = createServerFn({ method: "POST" })
   });
 
 export const submitSchoolApplication = createServerFn({ method: "POST" })
-  .inputValidator((input: unknown) => schoolApplicationSchema.parse(input))
+  .inputValidator((input: unknown) => schoolApplicationPayloadSchema.parse(input))
   .handler(async ({ data }) => {
     const supabase = serverSupabase();
     const { error } = await supabase.from("school_applications").insert(data);
