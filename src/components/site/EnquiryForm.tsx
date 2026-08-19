@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { toast } from "sonner";
+import { useServerFn } from "@tanstack/react-start";
 import { ArrowRight, Loader2 } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
 import { cn } from "@/lib/utils";
 import { enquirySchema, fieldErrors } from "@/lib/form-schemas";
+import { submitEnquiry } from "@/lib/notifications.functions";
 
 const enquiryTypes = [
   "School enquiry",
