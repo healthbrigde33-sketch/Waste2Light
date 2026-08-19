@@ -23,6 +23,7 @@ function FieldError({ message }: { message?: string | undefined }) {
 }
 
 export function SchoolApplicationForm({ className }: { className?: string }) {
+  const send = useServerFn(submitSchoolApplication);
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -51,13 +52,14 @@ export function SchoolApplicationForm({ className }: { className?: string }) {
 
     setErrors({});
     setSubmitting(true);
-    const { error } = await supabase.from("school_applications").insert(parsed.data);
-    setSubmitting(false);
-
-    if (error) {
+    try {
+      await send({ data: parsed.data });
+    } catch {
+      setSubmitting(false);
       toast.error("Your application could not be sent. Please try again.");
       return;
     }
+    setSubmitting(false);
 
     form.reset();
     setDone(true);
